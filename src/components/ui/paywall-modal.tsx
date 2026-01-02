@@ -96,11 +96,11 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity 
                                     <Lock className="w-8 h-8 text-gold" />
                                 </div>
                                 <h3 className="text-3xl md:text-4xl font-serif text-white mb-6 leading-tight">
-                                    Unlock Your <br />
-                                    <span className="text-gold">Cosmic Blueprint</span>
+                                    A Gift for the <br />
+                                    <span className="text-gold">New Year</span>
                                 </h3>
                                 <p className="text-white/50 mb-8 font-light leading-relaxed text-sm">
-                                    You've scratched the surface. Now, decrypt the full architectural plan of your soul and master your connections.
+                                    As a welcome to the matrix, we are granting the first 1,000 souls an <span className="text-gold font-bold">Infinity Pass</span> for free. Claim your lifetime map before the spots are gone.
                                 </p>
 
                                 <div className="space-y-4">
@@ -149,7 +149,7 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity 
                                         onClick={() => handleCheckout('BASIC')}
                                         className="w-full py-4 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-white/10 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 group"
                                     >
-                                        UNLOCK FREE
+                                        CLAIM 2 REVEALS
                                     </button>
                                 </div>
 
@@ -224,7 +224,7 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity 
                                             onClick={() => handleCheckout('INFINITY')}
                                             className="w-full py-4 bg-gradient-to-r from-gold via-yellow-500 to-yellow-600 text-black font-black text-xs uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-500 hover:-translate-y-1 transform active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                                         >
-                                            ACTIVATE FREE PASS
+                                            CLAIM FREE INFINITY PASS
                                         </button>
                                     </div>
                                 </div>

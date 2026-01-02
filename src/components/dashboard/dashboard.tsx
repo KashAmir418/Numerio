@@ -155,27 +155,8 @@ export const Dashboard = ({ profile }: DashboardProps) => {
 
             <div className="w-full max-w-6xl mx-auto px-4 md:px-8">
 
-                {/* Header / Dev Tools */}
-                <div className="flex justify-center mb-8">
-                    <button
-                        onClick={() => {
-                            let nextTier: UserTier = 'FREE';
-                            if (userTier === 'FREE') nextTier = 'BASIC';
-                            else if (userTier === 'BASIC') nextTier = 'INFINITY';
-                            else nextTier = 'FREE';
-
-                            setUserTier(nextTier);
-                            localStorage.setItem('numerio_user_tier', nextTier);
-                            if (nextTier === 'BASIC') {
-                                setCompatibilityChecksUsed(0);
-                                localStorage.setItem('numerio_compatibility_checks_used', '0');
-                            }
-                        }}
-                        className="text-[10px] uppercase tracking-widest text-white/20 hover:text-white/50 border border-white/10 px-3 py-1 rounded-full"
-                    >
-                        Dev: Cycle Tier ({userTier}){userTier === 'BASIC' ? ` [${compatibilityChecksUsed}/2]` : ''}
-                    </button>
-                </div>
+                {/* Header Spacer */}
+                <div className="h-12" />
 
                 <AnimatePresence mode="wait">
                     <motion.div
