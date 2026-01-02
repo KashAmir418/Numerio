@@ -195,8 +195,6 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
 
             <div className="w-full max-w-6xl mx-auto px-4 md:px-8">
 
-                {/* Header Spacer */}
-                <div className="h-4 md:h-12" />
 
                 <AnimatePresence mode="wait">
                     <motion.div
