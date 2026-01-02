@@ -173,7 +173,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
 
             {/* Small Professional Gift Banner */}
             {!isPremium && (
-                <div className="flex justify-center mt-6 mb-2">
+                <div className="flex justify-center mt-2 mb-0">
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -196,7 +196,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
             <div className="w-full max-w-6xl mx-auto px-4 md:px-8">
 
                 {/* Header Spacer */}
-                <div className="h-12" />
+                <div className="h-4 md:h-12" />
 
                 <AnimatePresence mode="wait">
                     <motion.div

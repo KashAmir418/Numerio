@@ -57,7 +57,7 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
     );
 
     return (
-        <div className="space-y-16 animate-fade-in-up">
+        <div className="space-y-6 md:space-y-16 animate-fade-in-up">
 
             {/* Share Modal */}
             <AnimatePresence>
@@ -138,10 +138,10 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                 </div>
             </div>
 
-            <div className="flex flex-col gap-12 max-w-5xl mx-auto">
+            <div className="flex flex-col gap-6 md:gap-12 max-w-5xl mx-auto">
                 {/* 1. DESTINY MATRIX CHART (CENTERED) */}
                 <div className="flex flex-col items-center">
-                    <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl w-full flex flex-col items-center justify-center relative overflow-hidden group hover:border-gold/30 transition-all duration-700 min-h-[500px]">
+                    <div className="bg-white/5 backdrop-blur-md border border-white/10 p-4 md:p-8 rounded-3xl w-full flex flex-col items-center justify-center relative overflow-hidden group hover:border-gold/30 transition-all duration-700 min-h-[400px] md:min-h-[500px]">
                         <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] -mr-40 -mt-40" />
                         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold/10 rounded-full blur-[100px] -ml-40 -mb-40" />
                         <h3 className="text-gold font-serif text-xs mb-8 tracking-[0.3em] uppercase opacity-60">Destiny Matrix Archetype</h3>
