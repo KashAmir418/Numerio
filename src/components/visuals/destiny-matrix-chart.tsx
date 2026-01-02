@@ -149,7 +149,7 @@ const DestinyMatrixChartBase = React.memo(({ profile, className = "", showTitle 
     return (
         <div className={`aspect-square w-full max-w-[800px] relative mx-auto select-none ${className} flex items-center justify-center`}>
             {/* Background Glow Container */}
-            <div className="absolute inset-0 bg-radial-gradient from-[#D4AF37]/5 to-transparent opacity-50 rounded-full blur-3xl pointer-events-none transform scale-75" />
+            <div className="absolute inset-0 bg-radial-gradient from-[#D4AF37]/5 to-transparent opacity-50 rounded-full blur-xl pointer-events-none transform scale-75" />
 
             {/* ZOOMED ViewBox: 0 0 200 200 (Was -20 -20 240 240) -> This removes padding and makes chart LARGER */}
             <svg viewBox="0 0 200 200" className="w-full h-full overflow-visible z-10">

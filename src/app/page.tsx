@@ -45,6 +45,14 @@ export default function Home() {
 
     // Load profile from localStorage on mount
     useEffect(() => {
+        // Check for ?reset=true in URL to allow testing the landing page
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('reset') === 'true') {
+            localStorage.removeItem('numerio_user_birthdate');
+            window.history.replaceState({}, '', window.location.pathname);
+            return;
+        }
+
         const savedDate = localStorage.getItem('numerio_user_birthdate');
         if (savedDate) {
             const calculatedProfile = calculateNumerology(savedDate);
@@ -112,7 +120,7 @@ export default function Home() {
     };
 
     return (
-        <main className={`relative min-h-screen flex flex-col items-center ${step === 'dashboard' ? 'justify-start overflow-x-hidden' : 'justify-center overflow-hidden'}`}>
+        <main className={`relative min-h-[100dvh] flex flex-col items-center ${step === 'dashboard' ? 'justify-start' : 'justify-center'} overflow-x-hidden`}>
             <StarBackground />
 
 
@@ -120,10 +128,10 @@ export default function Home() {
                 {step === "entry" && (
                     <motion.div
                         key="entry"
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 0, scale: 0.98 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="relative z-10 flex flex-col items-center gap-12"
                     >
                         <div className="text-center space-y-4">
