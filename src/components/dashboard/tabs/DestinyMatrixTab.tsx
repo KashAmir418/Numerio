@@ -40,7 +40,7 @@ export const DestinyMatrixTab = React.memo(({ profile, isPremium, onShowPaywall 
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up pb-20 p-4">
             <div className="text-center space-y-2">
-                <h2 className="text-3xl font-serif text-white">The Destiny Matrix</h2>
+                <h2 className="text-3xl font-serif text-starlight">The Destiny Matrix</h2>
                 <p className="text-gold/40 text-xs tracking-widest uppercase font-medium">Your Archetypal Geometry</p>
             </div>
 

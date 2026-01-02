@@ -7,6 +7,36 @@ import { DateInput } from "@/components/ui/date-input";
 import { calculateNumerology, NumerologyProfile } from "@/utils/numerology";
 import { Dashboard } from "@/components/dashboard/dashboard";
 
+const LoadingText = () => {
+    const [index, setIndex] = useState(0);
+    const messages = [
+        "Calculating Destiny...",
+        "Decrypting Soul Frequency...",
+        "Mapping Cosmic Blueprint...",
+        "Synchronizing Arcanas...",
+        "Finalizing Matrix..."
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((prev) => (prev + 1) % messages.length);
+        }, 800);
+        return () => clearInterval(interval);
+    }, [messages.length]);
+
+    return (
+        <motion.span
+            key={index}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+        >
+            {messages[index]}
+        </motion.span>
+    );
+};
+
 export default function Home() {
     const [step, setStep] = useState<"entry" | "loading" | "dashboard">("entry");
     const [profile, setProfile] = useState<NumerologyProfile | null>(null);
@@ -135,7 +165,15 @@ export default function Home() {
                             <div className="absolute inset-[10px] border border-gold/80 rounded-full opacity-30" />
                             <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-gold rounded-full shadow-[0_0_20px_#D4AF37]" />
                         </motion.div>
-                        <h2 className="text-xl font-serif text-gold tracking-widest uppercase">Calculating Destiny...</h2>
+
+                        <div className="h-8">
+                            <motion.h2
+                                key={Math.floor(Date.now() / 1000) % 3} // Simple way to trigger re-animation if needed, but we'll use a local state for better control
+                                className="text-xl font-serif text-gold tracking-widest uppercase animate-pulse"
+                            >
+                                <LoadingText />
+                            </motion.h2>
+                        </div>
                     </motion.div>
                 )}
 

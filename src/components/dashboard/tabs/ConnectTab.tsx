@@ -56,7 +56,7 @@ export const ConnectTab = React.memo(({
     return (
         <div className="max-w-4xl mx-auto animate-fade-in-up">
             <div className="text-center mb-16">
-                <h2 className="text-3xl font-serif text-white mb-2">Soul Connections</h2>
+                <h2 className="text-3xl font-serif text-starlight mb-2">Soul Connections</h2>
                 <p className="text-white/50 text-sm">Understand your relationships through the matrix.</p>
             </div>
 

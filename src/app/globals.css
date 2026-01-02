@@ -7,11 +7,21 @@
     --foreground: #EAEAEA;
 }
 
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
 body {
     color: var(--foreground);
     background: var(--background);
     font-family: var(--font-inter), sans-serif;
     overflow-x: hidden;
+}
+
+::selection {
+    background: rgba(212, 175, 55, 0.2);
+    color: #D4AF37;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -48,4 +58,18 @@ body {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.text-starlight {
+    background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 50%, #999999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #F1D37E 50%, #B8860B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
