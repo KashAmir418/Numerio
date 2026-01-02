@@ -15,6 +15,15 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
     const [loadingTier, setLoadingTier] = useState<'BASIC' | 'INFINITY' | null>(null);
 
     const handleCheckout = async (tier: 'BASIC' | 'INFINITY') => {
+        // --- FREE BETA MODE ---
+        // For launch, we are making this free. To enable Stripe later, 
+        // uncomment the code below and set your environment variables.
+
+        if (tier === 'BASIC') onUnlockBasic?.();
+        if (tier === 'INFINITY') onUnlockInfinity?.();
+        return;
+
+        /* 
         setLoadingTier(tier);
         try {
             const response = await fetch('/api/checkout', {
@@ -38,6 +47,7 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
             alert("Payment system is currently unavailable.");
             setLoadingTier(null);
         }
+        */
     };
 
     return (
@@ -137,9 +147,7 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
                                         onClick={() => handleCheckout('BASIC')}
                                         className="w-full py-4 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-white/10 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 group"
                                     >
-                                        {loadingTier === 'BASIC' ? (
-                                            <Loader2 className="w-4 h-4 animate-spin" />
-                                        ) : "GET 2 REVEALS"}
+                                        UNLOCK FREE
                                     </button>
                                 </div>
 
@@ -214,9 +222,7 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
                                             onClick={() => handleCheckout('INFINITY')}
                                             className="w-full py-4 bg-gradient-to-r from-gold via-yellow-500 to-yellow-600 text-black font-black text-xs uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-500 hover:-translate-y-1 transform active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                                         >
-                                            {loadingTier === 'INFINITY' ? (
-                                                <Loader2 className="w-4 h-4 animate-spin" />
-                                            ) : "ACTIVATE LIFESTYLE"}
+                                            ACTIVATE FREE PASS
                                         </button>
                                     </div>
                                 </div>
