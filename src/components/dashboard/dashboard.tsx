@@ -32,6 +32,25 @@ export const Dashboard = ({ profile }: DashboardProps) => {
 
     // Load user status from local storage
     useEffect(() => {
+        // 1. Check for Stripe redirect success
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+        const tier = params.get('tier') as UserTier;
+
+        if (sessionId && tier) {
+            // In a real app, you would verify the session on the backend here.
+            // For now, we'll trust the redirect and update the tier.
+            setUserTier(tier);
+            localStorage.setItem('numerio_user_tier', tier);
+            if (tier === 'BASIC') {
+                setCompatibilityChecksUsed(0);
+                localStorage.setItem('numerio_compatibility_checks_used', '0');
+            }
+            // Clean up URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        // 2. Load from localStorage
         const savedTier = localStorage.getItem('numerio_user_tier') as UserTier;
         const savedChecks = localStorage.getItem('numerio_compatibility_checks_used');
 

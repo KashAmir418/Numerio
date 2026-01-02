@@ -3,7 +3,18 @@ import { stripe } from '@/lib/stripe';
 
 export async function POST(req: Request) {
     try {
-        const { priceId, tierName } = await req.json();
+        const { tierName } = await req.json();
+
+        let priceId = '';
+        if (tierName === 'BASIC') {
+            priceId = process.env.STRIPE_BASIC_PASS_PRICE_ID || '';
+        } else if (tierName === 'INFINITY') {
+            priceId = process.env.STRIPE_INFINITY_PASS_PRICE_ID || '';
+        }
+
+        if (!priceId) {
+            return NextResponse.json({ error: 'Invalid tier or price ID missing' }, { status: 400 });
+        }
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],

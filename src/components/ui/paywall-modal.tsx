@@ -1,16 +1,45 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Sparkles, Infinity, Zap, Check, Heart, X } from "lucide-react";
+import { Lock, Sparkles, Infinity, Zap, Check, Heart, X, Loader2 } from "lucide-react";
 
 interface PaywallModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onUnlockBasic?: () => void;
-    onUnlockInfinity?: () => void;
+    onUnlockBasic?: () => void; // Keep for fallback/dev
+    onUnlockInfinity?: () => void; // Keep for fallback/dev
     title: string;
     description: string;
 }
 
 export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity, title, description }: PaywallModalProps) => {
+    const [loadingTier, setLoadingTier] = useState<'BASIC' | 'INFINITY' | null>(null);
+
+    const handleCheckout = async (tier: 'BASIC' | 'INFINITY') => {
+        setLoadingTier(tier);
+        try {
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tierName: tier }),
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                console.error("Failed to create checkout session", data);
+                alert("Something went wrong. Please try again later.");
+                setLoadingTier(null);
+            }
+        } catch (error) {
+            console.error("Checkout error:", error);
+            alert("Payment system is currently unavailable.");
+            setLoadingTier(null);
+        }
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -104,10 +133,13 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
                                     </div>
 
                                     <button
-                                        onClick={onUnlockBasic}
-                                        className="w-full py-4 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-white/10 transition-all active:scale-95 cursor-pointer"
+                                        disabled={loadingTier !== null}
+                                        onClick={() => handleCheckout('BASIC')}
+                                        className="w-full py-4 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-white/10 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 group"
                                     >
-                                        GET 2 REVEALS
+                                        {loadingTier === 'BASIC' ? (
+                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                        ) : "GET 2 REVEALS"}
                                     </button>
                                 </div>
 
@@ -178,10 +210,13 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
                                         </div>
 
                                         <button
-                                            onClick={onUnlockInfinity}
-                                            className="w-full py-4 bg-gradient-to-r from-gold via-yellow-500 to-yellow-600 text-black font-black text-xs uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-500 hover:-translate-y-1 transform active:scale-95 cursor-pointer"
+                                            disabled={loadingTier !== null}
+                                            onClick={() => handleCheckout('INFINITY')}
+                                            className="w-full py-4 bg-gradient-to-r from-gold via-yellow-500 to-yellow-600 text-black font-black text-xs uppercase tracking-widest rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-500 hover:-translate-y-1 transform active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                                         >
-                                            ACTIVATE LIFESTYLE
+                                            {loadingTier === 'INFINITY' ? (
+                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                            ) : "ACTIVATE LIFESTYLE"}
                                         </button>
                                     </div>
                                 </div>
