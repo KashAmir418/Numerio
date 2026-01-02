@@ -12,6 +12,16 @@ export default function Home() {
     const [profile, setProfile] = useState<NumerologyProfile | null>(null);
 
 
+    // Load profile from localStorage on mount
+    useEffect(() => {
+        const savedDate = localStorage.getItem('numerio_user_birthdate');
+        if (savedDate) {
+            const calculatedProfile = calculateNumerology(savedDate);
+            setProfile(calculatedProfile);
+            setStep("dashboard");
+        }
+    }, []);
+
     const handleEntryComplete = (dateStr: string) => {
         // Format: DD.MM.YYYY
         const [dayStr, monthStr, yearStr] = dateStr.split('.');
@@ -44,6 +54,9 @@ export default function Home() {
         // Convert to YYYY-MM-DD for the numerology calculator engine
         const internalDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
+        // Save to localStorage for persistence
+        localStorage.setItem('numerio_user_birthdate', internalDate);
+
         // Calculate numerology immediately
         const calculatedProfile = calculateNumerology(internalDate);
         setProfile(calculatedProfile);
@@ -53,6 +66,12 @@ export default function Home() {
         setTimeout(() => {
             setStep("dashboard");
         }, 3000);
+    };
+
+    const handleReset = () => {
+        localStorage.removeItem('numerio_user_birthdate');
+        setProfile(null);
+        setStep("entry");
     };
 
     return (
@@ -127,7 +146,7 @@ export default function Home() {
                         animate={{ opacity: 1 }}
                         className="relative z-10 w-full"
                     >
-                        <Dashboard profile={profile} />
+                        <Dashboard profile={profile} onReset={handleReset} />
                     </motion.div>
                 )}
             </AnimatePresence>

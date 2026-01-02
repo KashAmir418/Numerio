@@ -14,11 +14,12 @@ import { ConnectTab } from "@/components/dashboard/tabs/ConnectTab";
 
 interface DashboardProps {
     profile: NumerologyProfile;
+    onReset: () => void;
 }
 
 export type UserTier = 'FREE' | 'BASIC' | 'INFINITY';
 
-export const Dashboard = ({ profile }: DashboardProps) => {
+export const Dashboard = ({ profile, onReset }: DashboardProps) => {
     const [userTier, setUserTier] = useState<UserTier>('FREE');
     const [compatibilityChecksUsed, setCompatibilityChecksUsed] = useState(0);
     const [showAnalysisPaywall, setShowAnalysisPaywall] = useState(false);
@@ -212,6 +213,7 @@ export const Dashboard = ({ profile }: DashboardProps) => {
                                 isPremium={isPremium}
                                 onShowPaywall={handleShowPaywall}
                                 onTabChange={setActiveTab}
+                                onReset={onReset}
                             />
                         )}
 

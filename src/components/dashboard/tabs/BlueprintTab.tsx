@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { NumerologyProfile } from "@/utils/numerology";
-import { Info, Share2, X, Lock, Palette, ShieldAlert, Sparkles, Heart, Zap, ArrowRight, TrendingUp } from "lucide-react";
+import { Info, Share2, X, Lock, Palette, ShieldAlert, Sparkles, Heart, Zap, ArrowRight, TrendingUp, RefreshCcw } from "lucide-react";
 import {
     getLayeredLifePathReading,
     BIRTH_DAY_READINGS,
@@ -22,9 +22,10 @@ interface BlueprintTabProps {
     isPremium: boolean;
     onShowPaywall: () => void;
     onTabChange?: (tab: string) => void;
+    onReset?: () => void;
 }
 
-export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onShowPaywall, onTabChange }: BlueprintTabProps) => {
+export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onShowPaywall, onTabChange, onReset }: BlueprintTabProps) => {
     const [showShareModal, setShowShareModal] = useState(false);
     const [userName, setUserName] = useState("");
     const [isPaletteExpanded, setIsPaletteExpanded] = useState(false);
@@ -445,6 +446,22 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                             </div>
                         </button>
                     </div>
+                </div>
+
+                {/* 6. RESET / CHECK ANOTHER SOUL SECTION */}
+                <div className="pt-24 pb-12 flex flex-col items-center">
+                    <button
+                        onClick={onReset}
+                        className="group flex flex-col items-center gap-4 transition-all duration-500"
+                    >
+                        <div className="p-4 bg-white/5 border border-white/10 rounded-full group-hover:bg-gold/10 group-hover:border-gold/30 transition-all duration-700 active:scale-90">
+                            <RefreshCcw className="text-white/40 group-hover:text-gold transition-colors" size={24} />
+                        </div>
+                        <div className="text-center">
+                            <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 group-hover:text-gold/50 transition-colors font-bold">New Reading</span>
+                            <h4 className="text-white/60 group-hover:text-white transition-colors font-serif mt-1 italic tracking-wide">Analyze another soul?</h4>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
