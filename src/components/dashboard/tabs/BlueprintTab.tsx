@@ -119,23 +119,22 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                 )}
             </AnimatePresence>
             <div className="space-y-6 md:space-y-16">
-                <div className="text-center relative pt-4">
-                    <h2 className="text-3xl md:text-5xl font-serif text-starlight mb-2">
-                        Your Cosmic Blueprint
-                    </h2>
-                    <p className="text-white/60 font-light tracking-wide">
-                        Life Path {profile.lifePathNumber}
-                    </p>
-
-                    {/* Main Share CTAs */}
-                    <div className="absolute right-0 top-0 hidden md:block">
-                        <button
-                            onClick={() => setShowShareModal(true)}
-                            className="flex items-center gap-2 text-gold hover:text-white transition-colors text-xs uppercase tracking-widest border border-gold/20 px-4 py-2 rounded-full hover:border-gold/50 bg-gold/5"
-                        >
-                            <Share2 size={14} /> Get Soul Card
-                        </button>
+                <div className="flex flex-col items-center gap-6 pt-4">
+                    <div className="text-center">
+                        <h2 className="text-3xl md:text-5xl font-serif text-starlight mb-2">
+                            Your Cosmic Blueprint
+                        </h2>
+                        <p className="text-white/60 font-light tracking-wide">
+                            Life Path {profile.lifePathNumber}
+                        </p>
                     </div>
+
+                    <button
+                        onClick={() => setShowShareModal(true)}
+                        className="flex items-center gap-2 text-gold hover:text-white transition-colors text-xs uppercase tracking-widest border border-gold/20 px-6 py-2.5 rounded-full hover:border-gold/50 bg-gold/5 backdrop-blur-sm"
+                    >
+                        <Share2 size={14} /> Get Soul Card
+                    </button>
                 </div>
 
                 <div className="flex flex-col gap-6 md:gap-12 max-w-5xl mx-auto">

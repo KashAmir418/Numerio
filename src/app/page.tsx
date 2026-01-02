@@ -108,7 +108,7 @@ export default function Home() {
     if (!isReady) return null;
 
     return (
-        <main className={`relative min-h-screen w-full bg-void flex flex-col items-center overflow-x-hidden ${step === 'dashboard' ? 'justify-start' : 'justify-center'}`}>
+        <main className="relative min-h-screen w-full bg-void flex flex-col items-center overflow-x-hidden justify-start">
             <StarBackground />
 
             <AnimatePresence>
@@ -119,7 +119,7 @@ export default function Home() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative z-10 w-full flex flex-col items-center justify-center gap-12 px-4 py-20"
+                        className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center gap-12 px-4 py-20"
                     >
                         <div className="text-center space-y-4">
                             <motion.h1
@@ -156,7 +156,7 @@ export default function Home() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="relative z-10 w-full flex flex-col items-center justify-center text-center p-4"
+                        className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center text-center p-4"
                     >
                         <motion.div
                             className="w-24 h-24 border border-gold/30 rounded-full mx-auto mb-8 relative"
