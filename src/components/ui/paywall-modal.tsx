@@ -11,10 +11,12 @@ interface PaywallModalProps {
     description: string;
 }
 
-export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity, title, description }: PaywallModalProps) => {
-    const [loadingTier, setLoadingTier] = useState<'BASIC' | 'INFINITY' | null>(null);
+export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity }: PaywallModalProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [loadingTier, _setLoadingTier] = useState<'BASIC' | 'INFINITY' | null>(null);
 
     const handleCheckout = async (tier: 'BASIC' | 'INFINITY') => {
+        // --- FREE BETA MODE ---
         // --- FREE BETA MODE ---
         // For launch, we are making this free. To enable Stripe later, 
         // uncomment the code below and set your environment variables.
@@ -213,7 +215,7 @@ export const PaywallModal = ({ isOpen, onClose, onUnlockBasic, onUnlockInfinity,
                                             </div>
                                             <div className="flex flex-col items-center">
                                                 <span className="text-gold/80 text-[10px] uppercase tracking-[0.2em] font-black">LIFETIME ACCESS UNLOCKED</span>
-                                                <span className="text-white/20 text-[9px] uppercase tracking-widest mt-1">Pay once, own your soul's map forever</span>
+                                                <span className="text-white/20 text-[9px] uppercase tracking-widest mt-1">Pay once, own your soul&apos;s map forever</span>
                                             </div>
                                         </div>
 

@@ -100,6 +100,7 @@ export const Dashboard = ({ profile }: DashboardProps) => {
         setDrawerState({ isOpen: true, type });
     }, []);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleShowPaywall = useCallback(() => {
         setShowAnalysisPaywall(true);
     }, []);
