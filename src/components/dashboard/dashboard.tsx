@@ -24,6 +24,25 @@ export const Dashboard = ({ profile }: DashboardProps) => {
     const [showAnalysisPaywall, setShowAnalysisPaywall] = useState(false);
     const [activeTab, setActiveTab] = useState("Blueprint");
 
+    // Dynamic Soul Counter logic
+    const [soulsClaimed, setSoulsClaimed] = useState(160);
+
+    useEffect(() => {
+        const calculateSouls = () => {
+            const now = new Date();
+            const startOfLaunch = new Date(now.getFullYear(), 0, 1);
+            const hoursPassed = Math.floor((now.getTime() - startOfLaunch.getTime()) / (1000 * 60 * 60));
+            return Math.min(987, 160 + (hoursPassed * 2) + now.getMinutes() % 10);
+        };
+
+        setSoulsClaimed(calculateSouls());
+        const interval = setInterval(() => {
+            setSoulsClaimed(calculateSouls());
+        }, 60000); // Check every minute
+
+        return () => clearInterval(interval);
+    }, []);
+
     // Reading Drawer State
     const [drawerState, setDrawerState] = useState<{
         isOpen: boolean;
@@ -150,6 +169,26 @@ export const Dashboard = ({ profile }: DashboardProps) => {
                 isPremium={isPremium}
                 onUnlock={handleShowPaywall}
             />
+
+            {/* Small Professional Gift Banner */}
+            {!isPremium && (
+                <div className="flex justify-center mt-6 mb-2">
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-gold/5 backdrop-blur-sm border border-gold/10 px-4 py-1.5 rounded-full flex items-center gap-3"
+                    >
+                        <div className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 bg-gold/50 rounded-full" />
+                            <span className="text-[9px] text-gold/80 font-bold uppercase tracking-widest">NY 2026 Gift</span>
+                        </div>
+                        <div className="w-[1px] h-3 bg-white/10" />
+                        <p className="text-[9px] text-white/50 font-medium tracking-wide">
+                            Free Infinity Pass <span className="text-white/80 tracking-normal ml-1">({1000 - soulsClaimed} / 1000 left)</span>
+                        </p>
+                    </motion.div>
+                </div>
+            )}
 
             <TabNavigation tabs={TABS} activeTab={activeTab} onTabChange={setActiveTab} />
 

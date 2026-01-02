@@ -11,19 +11,6 @@ export default function Home() {
     const [step, setStep] = useState<"entry" | "loading" | "dashboard">("entry");
     const [profile, setProfile] = useState<NumerologyProfile | null>(null);
 
-    // Dynamic Soul Counter logic
-    const [soulsClaimed, setSoulsClaimed] = useState(160);
-
-    useEffect(() => {
-        // Simple logic to "claim" souls based on time to create urgency
-        const now = new Date();
-        const startOfLaunch = new Date(now.getFullYear(), 0, 1); // Jan 1st
-        const hoursPassed = Math.floor((now.getTime() - startOfLaunch.getTime()) / (1000 * 60 * 60));
-
-        // Starts at 160, adds a few every hour
-        const calculatedSouls = Math.min(987, 160 + (hoursPassed * 2) + now.getMinutes() % 10);
-        setSoulsClaimed(calculatedSouls);
-    }, []);
 
     const handleEntryComplete = (date: string) => {
         // Validation Logic
@@ -60,26 +47,6 @@ export default function Home() {
         <main className={`relative min-h-screen flex flex-col items-center ${step === 'dashboard' ? 'justify-start overflow-x-hidden' : 'justify-center overflow-hidden'}`}>
             <StarBackground />
 
-            {/* New Year Gift Banner */}
-            {step === "entry" && (
-                <motion.div
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1, duration: 0.8 }}
-                    className="absolute top-0 left-0 w-full z-50 p-4 flex justify-center"
-                >
-                    <div className="bg-gold/10 backdrop-blur-md border border-gold/20 px-6 py-2 rounded-full flex items-center gap-4 shadow-[0_0_20px_rgba(212,175,55,0.1)]">
-                        <div className="flex items-center gap-2">
-                            <span className="w-2 h-2 bg-gold animate-pulse rounded-full" />
-                            <span className="text-[10px] md:text-xs text-gold font-black uppercase tracking-[0.2em]">New Year Gift</span>
-                        </div>
-                        <div className="w-[1px] h-4 bg-gold/20" />
-                        <p className="text-[10px] md:text-xs text-white/80 font-light tracking-wide">
-                            Free Infinity Pass for first 1,000 souls <span className="text-gold font-bold ml-2">({1000 - soulsClaimed} / 1000 left)</span>
-                        </p>
-                    </div>
-                </motion.div>
-            )}
 
             <AnimatePresence mode="wait">
                 {step === "entry" && (
