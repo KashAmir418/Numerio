@@ -53,22 +53,21 @@ export function DateInput({ onSubmit }: { onSubmit: (date: string) => void }) {
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    className="w-full bg-transparent border-b border-white/40 text-center text-3xl md:text-5xl font-serif text-gold focus:outline-none focus:border-gold transition-all placeholder:text-white/20 p-2 tracking-[0.1em] shadow-[0_1px_0_0_rgba(255,255,255,0.05)]"
+                    className="w-full bg-transparent border-b border-white/60 text-center text-3xl md:text-5xl font-serif text-gold focus:outline-none focus:border-gold transition-all placeholder:text-white/40 p-2 tracking-[0.1em]"
                 />
             </div>
 
             <motion.button
                 onClick={handleSubmit}
                 disabled={inputValue.length < 10}
-                className="group relative px-8 py-3 bg-white/5 border border-white/10 rounded-full overflow-hidden disabled:opacity-0 disabled:cursor-not-allowed transition-all duration-500 hover:bg-white/10 hover:border-gold/50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: inputValue.length === 10 ? 1 : 0, y: inputValue.length === 10 ? 0 : 20 }}
+                className="group relative px-8 py-3 bg-white/5 border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-gold/50 disabled:hidden"
+                initial={false}
+                animate={{ opacity: inputValue.length === 10 ? 1 : 0 }}
             >
                 <div className="relative z-10 flex items-center gap-2 text-starlight font-serif tracking-widest uppercase text-sm">
                     <span>Reveal Destiny</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-                <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity blur-md" />
             </motion.button>
         </div>
     );

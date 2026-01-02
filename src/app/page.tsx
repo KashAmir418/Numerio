@@ -119,41 +119,20 @@ export default function Home() {
 
             <AnimatePresence mode="wait">
                 {step === "entry" && (
-                    <motion.div
-                        key="entry"
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative z-10 flex flex-col items-center gap-12"
-                    >
+                    <div className="relative z-10 flex flex-col items-center gap-12">
                         <div className="text-center space-y-4">
-                            <motion.h1
-                                className="text-4xl md:text-6xl font-serif text-starlight tracking-tight"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 1 }}
-                            >
+                            <h1 className="text-4xl md:text-6xl font-serif text-starlight tracking-tight">
                                 When did your soul arrive?
-                            </motion.h1>
-                            <motion.p
-                                className="text-white/60 font-light tracking-wide uppercase text-sm"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.5, duration: 1 }}
-                            >
+                            </h1>
+                            <p className="text-white/60 font-light tracking-wide uppercase text-sm">
                                 Enter your date of birth
-                            </motion.p>
+                            </p>
                         </div>
 
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8, duration: 1 }}
-                        >
+                        <div>
                             <DateInput onSubmit={handleEntryComplete} />
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
                 )}
 
                 {step === "loading" && (
