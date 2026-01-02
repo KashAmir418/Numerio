@@ -61,6 +61,7 @@ body {
 }
 
 .text-starlight {
+    color: #EAEAEA;
     background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 50%, #999999 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -68,6 +69,7 @@ body {
 }
 
 .text-gold-gradient {
+    color: #D4AF37;
     background: linear-gradient(135deg, #D4AF37 0%, #F1D37E 50%, #B8860B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

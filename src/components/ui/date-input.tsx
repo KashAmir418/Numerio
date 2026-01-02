@@ -53,7 +53,7 @@ export function DateInput({ onSubmit }: { onSubmit: (date: string) => void }) {
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    className="w-full bg-transparent border-b border-white/20 text-center text-3xl md:text-5xl font-serif text-gold focus:outline-none focus:border-gold transition-colors placeholder:text-white/5 p-2 tracking-[0.1em]"
+                    className="w-full bg-transparent border-b border-white/40 text-center text-3xl md:text-5xl font-serif text-gold focus:outline-none focus:border-gold transition-all placeholder:text-white/20 p-2 tracking-[0.1em] shadow-[0_1px_0_0_rgba(255,255,255,0.05)]"
                 />
             </div>
 

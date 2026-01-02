@@ -131,15 +131,15 @@ export default function Home() {
                                 className="text-4xl md:text-6xl font-serif text-starlight tracking-tight"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5, duration: 1 }}
+                                transition={{ delay: 0.2, duration: 1 }}
                             >
                                 When did your soul arrive?
                             </motion.h1>
                             <motion.p
-                                className="text-white/40 font-light tracking-wide uppercase text-sm"
+                                className="text-white/60 font-light tracking-wide uppercase text-sm"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ delay: 1, duration: 1 }}
+                                transition={{ delay: 0.5, duration: 1 }}
                             >
                                 Enter your date of birth
                             </motion.p>
@@ -148,7 +148,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1.2, duration: 1 }}
+                            transition={{ delay: 0.8, duration: 1 }}
                         >
                             <DateInput onSubmit={handleEntryComplete} />
                         </motion.div>
