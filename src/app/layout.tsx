@@ -29,8 +29,6 @@ export const metadata: Metadata = {
     },
 };
 
-import { PostHogAuth } from "@/components/providers/posthog-provider";
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -39,9 +37,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.variable} ${cinzel.variable} bg-void text-starlight antialiased`}>
-                <PostHogAuth>
-                    {children}
-                </PostHogAuth>
+                {children}
             </body>
         </html>
     );
