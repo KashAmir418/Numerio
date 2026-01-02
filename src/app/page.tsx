@@ -108,87 +108,85 @@ export default function Home() {
     if (!isReady) return null;
 
     return (
-        <main className="relative min-h-screen w-full bg-void flex flex-col items-center overflow-x-hidden">
+        <main className={`relative min-h-screen w-full bg-void flex flex-col items-center overflow-x-hidden ${step === 'dashboard' ? 'justify-start' : 'justify-center'}`}>
             <StarBackground />
 
-            <div className="relative z-10 w-full flex flex-col items-center">
-                <AnimatePresence>
-                    {step === "entry" && (
-                        <motion.div
-                            key="entry"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="min-h-screen w-full flex flex-col items-center justify-center gap-12 px-4 py-20"
-                        >
-                            <div className="text-center space-y-4">
-                                <motion.h1
-                                    className="text-4xl md:text-6xl font-serif text-starlight tracking-tight"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3, duration: 1.5, ease: "easeOut" }}
-                                >
-                                    When did your soul arrive?
-                                </motion.h1>
-                                <motion.p
-                                    className="text-white/40 font-light tracking-wide uppercase text-xs md:text-sm"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.8, duration: 1.5 }}
-                                >
-                                    Enter your date of birth
-                                </motion.p>
-                            </div>
-
-                            <motion.div
-                                initial={{ opacity: 0, y: 10 }}
+            <AnimatePresence>
+                {step === "entry" && (
+                    <motion.div
+                        key="entry"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="relative z-10 w-full flex flex-col items-center justify-center gap-12 px-4 py-20"
+                    >
+                        <div className="text-center space-y-4">
+                            <motion.h1
+                                className="text-4xl md:text-6xl font-serif text-starlight tracking-tight"
+                                initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.2, duration: 1 }}
+                                transition={{ delay: 0.3, duration: 1.5, ease: "easeOut" }}
                             >
-                                <DateInput onSubmit={handleEntryComplete} />
-                            </motion.div>
-                        </motion.div>
-                    )}
-
-                    {step === "loading" && (
-                        <motion.div
-                            key="loading"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="min-h-screen w-full flex flex-col items-center justify-center text-center p-4"
-                        >
-                            <motion.div
-                                className="w-24 h-24 border border-gold/30 rounded-full mx-auto mb-8 relative"
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                                When did your soul arrive?
+                            </motion.h1>
+                            <motion.p
+                                className="text-white/40 font-light tracking-wide uppercase text-xs md:text-sm"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.8, duration: 1.5 }}
                             >
-                                <div className="absolute inset-2 border border-gold/50 rounded-full opacity-50" />
-                                <div className="absolute inset-[10px] border border-gold/80 rounded-full opacity-30" />
-                                <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-gold rounded-full shadow-[0_0_20px_#D4AF37]" />
-                            </motion.div>
+                                Enter your date of birth
+                            </motion.p>
+                        </div>
 
-                            <div className="h-8">
-                                <motion.h2 className="text-xl font-serif text-gold tracking-widest uppercase italic animate-pulse">
-                                    <LoadingText />
-                                </motion.h2>
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {step === "dashboard" && profile && (
                         <motion.div
-                            key="dashboard"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="w-full min-h-screen pt-4 pb-20"
+                            transition={{ delay: 1.2, duration: 1 }}
                         >
-                            <Dashboard profile={profile} onReset={handleReset} />
+                            <DateInput onSubmit={handleEntryComplete} />
                         </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+                    </motion.div>
+                )}
+
+                {step === "loading" && (
+                    <motion.div
+                        key="loading"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="relative z-10 w-full flex flex-col items-center justify-center text-center p-4"
+                    >
+                        <motion.div
+                            className="w-24 h-24 border border-gold/30 rounded-full mx-auto mb-8 relative"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                        >
+                            <div className="absolute inset-2 border border-gold/50 rounded-full opacity-50" />
+                            <div className="absolute inset-[10px] border border-gold/80 rounded-full opacity-30" />
+                            <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-gold rounded-full shadow-[0_0_20px_#D4AF37]" />
+                        </motion.div>
+
+                        <div className="h-8">
+                            <motion.h2 className="text-xl font-serif text-gold tracking-widest uppercase italic animate-pulse">
+                                <LoadingText />
+                            </motion.h2>
+                        </div>
+                    </motion.div>
+                )}
+
+                {step === "dashboard" && profile && (
+                    <motion.div
+                        key="dashboard"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="relative z-10 w-full pt-4 pb-20"
+                    >
+                        <Dashboard profile={profile} onReset={handleReset} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </main>
     );
 }

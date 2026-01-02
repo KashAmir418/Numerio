@@ -151,7 +151,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
     const TABS = ["Blueprint", "Compatibility", "Destiny Matrix", "Forecast"];
 
     return (
-        <div className="min-h-screen relative z-10 pb-20">
+        <div className="w-full relative z-10 pb-20">
             <PaywallModal
                 isOpen={showAnalysisPaywall}
                 onClose={() => setShowAnalysisPaywall(false)}
