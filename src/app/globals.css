@@ -98,16 +98,26 @@ body {
 
 .text-starlight {
     color: #EAEAEA;
-    background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 50%, #999999 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .text-starlight {
+        background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 50%, #999999 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 }
 
 .text-gold-gradient {
     color: #D4AF37;
-    background: linear-gradient(135deg, #D4AF37 0%, #F1D37E 50%, #B8860B 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .text-gold-gradient {
+        background: linear-gradient(135deg, #D4AF37 0%, #F1D37E 50%, #B8860B 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 }

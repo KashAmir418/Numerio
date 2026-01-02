@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${inter.variable} ${cinzel.variable} bg-void text-starlight antialiased`}>
+            <body className={`${inter.variable} ${cinzel.variable} bg-void text-white antialiased`}>
                 {children}
             </body>
         </html>

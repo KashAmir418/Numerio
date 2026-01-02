@@ -108,19 +108,19 @@ export default function Home() {
     if (!isReady) return null;
 
     return (
-        <main className={`relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden bg-void`}>
+        <main className="relative min-h-screen w-full bg-void flex flex-col items-center">
             <StarBackground />
 
-            <div className={`relative z-10 w-full flex flex-col items-center ${step === 'dashboard' ? 'justify-start min-h-screen pt-4 pb-20' : 'justify-center'}`}>
+            <div className="relative z-10 w-full flex flex-col items-center">
                 <AnimatePresence mode="wait">
                     {step === "entry" && (
                         <motion.div
                             key="entry"
-                            initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                            className="flex flex-col items-center gap-12 px-4"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="min-h-screen flex flex-col items-center justify-center gap-12 px-4 py-20"
                         >
                             <div className="text-center space-y-4">
                                 <motion.h1
@@ -135,7 +135,7 @@ export default function Home() {
                                     className="text-white/40 font-light tracking-wide uppercase text-xs md:text-sm"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    transition={{ delay: 1.2, duration: 1.5 }}
+                                    transition={{ delay: 0.8, duration: 1.5 }}
                                 >
                                     Enter your date of birth
                                 </motion.p>
@@ -144,7 +144,7 @@ export default function Home() {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.8, duration: 1 }}
+                                transition={{ delay: 1.2, duration: 1 }}
                             >
                                 <DateInput onSubmit={handleEntryComplete} />
                             </motion.div>
@@ -154,11 +154,10 @@ export default function Home() {
                     {step === "loading" && (
                         <motion.div
                             key="loading"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
-                            transition={{ duration: 0.8 }}
-                            className="text-center"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="min-h-screen flex flex-col items-center justify-center text-center p-4"
                         >
                             <motion.div
                                 className="w-24 h-24 border border-gold/30 rounded-full mx-auto mb-8 relative"
@@ -181,10 +180,9 @@ export default function Home() {
                     {step === "dashboard" && profile && (
                         <motion.div
                             key="dashboard"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="w-full"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="w-full pt-4 pb-20"
                         >
                             <Dashboard profile={profile} onReset={handleReset} />
                         </motion.div>
