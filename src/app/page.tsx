@@ -6,6 +6,7 @@ import { StarBackground } from "@/components/visuals/star-background";
 import { DateInput } from "@/components/ui/date-input";
 import { calculateNumerology, NumerologyProfile } from "@/utils/numerology";
 import { Dashboard } from "@/components/dashboard/dashboard";
+import posthog from "posthog-js";
 
 const LoadingText = () => {
     const [index, setIndex] = useState(0);
@@ -86,6 +87,12 @@ export default function Home() {
 
         // Save to localStorage for persistence
         localStorage.setItem('numerio_user_birthdate', internalDate);
+
+        // Track Event
+        posthog.capture('birthdate_submitted', {
+            birthdate: internalDate,
+            format: 'manual_entry'
+        });
 
         // Calculate numerology immediately
         const calculatedProfile = calculateNumerology(internalDate);

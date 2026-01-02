@@ -11,6 +11,7 @@ import { BlueprintTab } from "@/components/dashboard/tabs/BlueprintTab";
 import { ForecastTab } from "@/components/dashboard/tabs/ForecastTab";
 import { DestinyMatrixTab } from "@/components/dashboard/tabs/DestinyMatrixTab";
 import { ConnectTab } from "@/components/dashboard/tabs/ConnectTab";
+import posthog from "posthog-js";
 
 interface DashboardProps {
     profile: NumerologyProfile;
@@ -24,6 +25,11 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
     const [compatibilityChecksUsed, setCompatibilityChecksUsed] = useState(0);
     const [showAnalysisPaywall, setShowAnalysisPaywall] = useState(false);
     const [activeTab, setActiveTab] = useState("Blueprint");
+
+    // Track Tab Changes
+    useEffect(() => {
+        posthog.capture('tab_viewed', { tab: activeTab });
+    }, [activeTab]);
 
     // Dynamic Soul Counter logic
     const [soulsClaimed, setSoulsClaimed] = useState(160);
@@ -94,6 +100,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
         setUserTier('INFINITY');
         localStorage.setItem('numerio_user_tier', 'INFINITY');
         setShowAnalysisPaywall(false);
+        posthog.capture('infinity_pass_claimed', { method: 'free_beta' });
     }, []);
 
     const handleUnlockBasic = useCallback(() => {
@@ -102,6 +109,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
         setCompatibilityChecksUsed(0); // Reset or set initial
         localStorage.setItem('numerio_compatibility_checks_used', '0');
         setShowAnalysisPaywall(false);
+        posthog.capture('basic_pass_claimed', { method: 'free_beta' });
     }, []);
 
     const handleIncrementChecks = useCallback(() => {
