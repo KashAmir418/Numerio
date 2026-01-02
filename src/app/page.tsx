@@ -12,28 +12,40 @@ export default function Home() {
     const [profile, setProfile] = useState<NumerologyProfile | null>(null);
 
 
-    const handleEntryComplete = (date: string) => {
-        // Validation Logic
-        const [yearStr, monthStr, dayStr] = date.split('-');
-        const year = parseInt(yearStr, 10);
-        const month = parseInt(monthStr, 10);
+    const handleEntryComplete = (dateStr: string) => {
+        // Format: DD.MM.YYYY
+        const [dayStr, monthStr, yearStr] = dateStr.split('.');
         const day = parseInt(dayStr, 10);
-        const currentYear = new Date().getFullYear();
+        const month = parseInt(monthStr, 10);
+        const year = parseInt(yearStr, 10);
 
+        const now = new Date();
+        const currentYear = now.getFullYear();
+
+        // 1. Basic Year Range Check
         if (year < 1900 || year > currentYear) {
-            alert("Please enter a valid birth year between 1900 and " + currentYear);
+            alert(`Please enter a valid birth year between 1900 and ${currentYear}`);
             return;
         }
 
-        // Basic date validity (e.g. Feb 30)
+        // 2. Real Date Validity (e.g. Feb 30)
         const dateObj = new Date(year, month - 1, day);
         if (dateObj.getFullYear() !== year || dateObj.getMonth() + 1 !== month || dateObj.getDate() !== day) {
-            alert("Please enter a valid date.");
+            alert("This date does not exist in the cosmic calendar. Please enter a real date.");
             return;
         }
 
+        // 3. Future Date Check
+        if (dateObj > now) {
+            alert("The matrix shows you haven't arrived yet. Please enter a valid past birthdate.");
+            return;
+        }
+
+        // Convert to YYYY-MM-DD for the numerology calculator engine
+        const internalDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
         // Calculate numerology immediately
-        const calculatedProfile = calculateNumerology(date);
+        const calculatedProfile = calculateNumerology(internalDate);
         setProfile(calculatedProfile);
 
         setStep("loading");

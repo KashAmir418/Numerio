@@ -5,38 +5,64 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 export function DateInput({ onSubmit }: { onSubmit: (date: string) => void }) {
-    const [date, setDate] = useState("");
+    const [inputValue, setInputValue] = useState("");
 
-    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDate(e.target.value);
+    const formatInput = (value: string) => {
+        // Remove everything except numbers
+        const numbers = value.replace(/\D/g, "");
+
+        let formatted = "";
+        if (numbers.length > 0) {
+            formatted += numbers.substring(0, 2);
+            if (numbers.length >= 3) {
+                formatted += "." + numbers.substring(2, 4);
+            }
+            if (numbers.length >= 5) {
+                formatted += "." + numbers.substring(4, 8);
+            }
+        }
+        return formatted;
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" && inputValue.length === 10) {
+            handleSubmit();
+        }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const formatted = formatInput(e.target.value);
+        if (formatted.length <= 10) {
+            setInputValue(formatted);
+        }
     };
 
     const handleSubmit = () => {
-        if (date) {
-            onSubmit(date);
+        if (inputValue.length === 10) {
+            onSubmit(inputValue);
         }
     };
 
     return (
         <div className="flex flex-col items-center gap-8">
-            <div className="relative group">
+            <div className="relative group w-full max-w-[280px]">
                 <input
-                    type="date"
-                    value={date}
-                    min="1900-01-01"
-                    max="2025-12-31"
-                    onChange={handleDateChange}
-                    className="w-full bg-transparent border-b border-white/20 text-center text-3xl md:text-4xl font-serif text-gold focus:outline-none focus:border-gold transition-colors placeholder:text-white/10 p-2 uppercase tracking-widest [color-scheme:dark]"
-                    style={{ colorScheme: 'dark' }} // Forces dark calendar in supported browsers
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="DD.MM.YYYY"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                    className="w-full bg-transparent border-b border-white/20 text-center text-3xl md:text-5xl font-serif text-gold focus:outline-none focus:border-gold transition-colors placeholder:text-white/5 p-2 tracking-[0.1em]"
                 />
             </div>
 
             <motion.button
                 onClick={handleSubmit}
-                disabled={!date}
+                disabled={inputValue.length < 10}
                 className="group relative px-8 py-3 bg-white/5 border border-white/10 rounded-full overflow-hidden disabled:opacity-0 disabled:cursor-not-allowed transition-all duration-500 hover:bg-white/10 hover:border-gold/50"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: date ? 1 : 0, y: date ? 0 : 20 }}
+                animate={{ opacity: inputValue.length === 10 ? 1 : 0, y: inputValue.length === 10 ? 0 : 20 }}
             >
                 <div className="relative z-10 flex items-center gap-2 text-starlight font-serif tracking-widest uppercase text-sm">
                     <span>Reveal Destiny</span>
