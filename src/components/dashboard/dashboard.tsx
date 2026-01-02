@@ -148,7 +148,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
         currentReadingTitle = `The Path of the ${lpArchetype}`;
     }
 
-    const TABS = ["Blueprint", "Forecast", "Destiny Matrix", "Compatibility"];
+    const TABS = ["Blueprint", "Compatibility", "Destiny Matrix", "Forecast"];
 
     return (
         <div className="min-h-screen relative z-10 pb-20">
@@ -217,11 +217,13 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
                             />
                         )}
 
-                        {activeTab === "Forecast" && (
-                            <ForecastTab
-                                profile={profile}
-                                isPremium={isPremium}
-                                onShowPaywall={handleShowPaywall}
+                        {activeTab === "Compatibility" && (
+                            <ConnectTab
+                                isUnlocked={isPremium || (userTier === 'BASIC' && compatibilityChecksUsed < 2)}
+                                userTier={userTier}
+                                checksUsed={compatibilityChecksUsed}
+                                onIncrementChecks={handleIncrementChecks}
+                                onUnlock={handleShowPaywall}
                             />
                         )}
 
@@ -233,13 +235,11 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
                             />
                         )}
 
-                        {activeTab === "Compatibility" && (
-                            <ConnectTab
-                                isUnlocked={isPremium || (userTier === 'BASIC' && compatibilityChecksUsed < 2)}
-                                userTier={userTier}
-                                checksUsed={compatibilityChecksUsed}
-                                onIncrementChecks={handleIncrementChecks}
-                                onUnlock={handleShowPaywall}
+                        {activeTab === "Forecast" && (
+                            <ForecastTab
+                                profile={profile}
+                                isPremium={isPremium}
+                                onShowPaywall={handleShowPaywall}
                             />
                         )}
                     </motion.div>
