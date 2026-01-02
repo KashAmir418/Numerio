@@ -34,7 +34,7 @@ const nodePop = {
     visible: (custom: number) => ({
         scale: 1,
         opacity: 1,
-        transition: { delay: custom, duration: 1.5, type: "spring", bounce: 0.2 }
+        transition: { delay: custom, duration: 0.8, ease: "easeOut" }
     })
 };
 
@@ -64,7 +64,7 @@ const MatrixNode = ({ x, y, value, subLabel, delay, special = false, scale = 1, 
                 cy={y}
                 r={r}
                 className={`transition-all duration-700 ${special ? 'fill-[#1a1500] stroke-[#D4AF37]' : icon ? 'fill-[#1a0f0f] stroke-[#D4AF37]/50' : 'fill-[#050505] stroke-[#D4AF37]'
-                    } ${special ? 'stroke-[0.8]' : 'stroke-[0.4]'} shadow-2xl`}
+                    } ${special ? 'stroke-[0.8]' : 'stroke-[0.4]'}`}
             />
 
             {/* Inner Ring (Detail) */}
