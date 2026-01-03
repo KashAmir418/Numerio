@@ -111,7 +111,7 @@ export default function Home() {
         <main className="relative min-h-screen w-full bg-void flex flex-col items-center overflow-x-hidden justify-start">
             <StarBackground />
 
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {step === "entry" && (
                     <motion.div
                         key="entry"
@@ -179,9 +179,9 @@ export default function Home() {
                 {step === "dashboard" && profile && (
                     <motion.div
                         key="dashboard"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="relative z-10 w-full pt-4 pb-20"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="relative z-10 w-full"
                     >
                         <Dashboard profile={profile} onReset={handleReset} />
                     </motion.div>

@@ -121,7 +121,7 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                 )}
             </AnimatePresence>
             <div className="space-y-6 md:space-y-16">
-                <div className="flex flex-col items-center gap-6 pt-4">
+                <div className="flex flex-col items-center gap-6">
                     <div className="text-center">
                         <h2 className="text-3xl md:text-5xl font-serif text-starlight mb-2">
                             Your Cosmic Blueprint
