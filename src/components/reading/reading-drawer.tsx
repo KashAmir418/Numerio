@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, BookOpen, Star, Heart, Briefcase, Zap, Moon, Sparkles, Calendar, Lock } from "lucide-react";
+import { X, BookOpen, Star, Heart, Briefcase, Zap, Moon, Sparkles, Calendar, Lock, Palette } from "lucide-react";
 import { NumberReading, LayeredReading } from "@/types/numerology";
+import { COLOR_VIBRATIONS } from "@/utils/colors_content";
 
 interface ReadingDrawerProps {
     isOpen: boolean;
@@ -169,13 +170,59 @@ export const ReadingDrawer = ({ isOpen, onClose, reading, number, title, isPremi
                                         </section>
 
                                         {/* Soul Lesson */}
-                                        <section className="bg-gold/10 p-8 rounded-2xl border border-gold/20 text-center relative overflow-hidden mt-12 mb-20">
+                                        <section className="bg-gold/10 p-8 rounded-2xl border border-gold/20 text-center relative overflow-hidden mt-12">
                                             <Star className="absolute top-4 right-4 text-gold/20 w-12 h-12" />
                                             <h3 className="text-gold text-sm uppercase tracking-widest font-medium mb-4">The Soul&apos;s Ultimate Lesson</h3>
                                             <p className="text-white/90 font-serif italic text-lg leading-relaxed whitespace-pre-line">
                                                 &quot;{baseReading.soulLesson}&quot;
                                             </p>
                                         </section>
+
+                                        {/* Energy Palette Integration */}
+                                        {COLOR_VIBRATIONS[number] && (
+                                            <section className="mt-16 pt-16 border-t border-white/10">
+                                                <div className="flex items-center gap-3 mb-8">
+                                                    <div className="p-2 bg-gold/10 rounded-lg text-gold">
+                                                        <Palette size={20} />
+                                                    </div>
+                                                    <h3 className="text-white font-serif text-xl">Energy Palette</h3>
+                                                </div>
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                    {/* Fortunate */}
+                                                    <div className="space-y-4">
+                                                        <span className="text-green-400 text-[10px] uppercase tracking-widest font-bold">Fortunate Vibrations</span>
+                                                        <div className="space-y-3">
+                                                            {COLOR_VIBRATIONS[number].fortunate.map((color: any, i: number) => (
+                                                                <div key={i} className="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/5">
+                                                                    <div className="w-10 h-10 rounded-full border border-white/20" style={{ backgroundColor: color.hex, boxShadow: `0 0 15px ${color.hex}33` }} />
+                                                                    <div>
+                                                                        <div className="text-white text-xs font-bold">{color.name}</div>
+                                                                        <div className="text-white/40 text-[10px] font-light leading-tight">{color.description}</div>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Discordant */}
+                                                    <div className="space-y-4">
+                                                        <span className="text-red-400 text-[10px] uppercase tracking-widest font-bold">Discordant Tones</span>
+                                                        <div className="space-y-3">
+                                                            {COLOR_VIBRATIONS[number].discordant.map((color: any, i: number) => (
+                                                                <div key={i} className="flex items-center gap-4 bg-white/5 p-3 rounded-xl border border-white/5 opacity-80">
+                                                                    <div className="w-10 h-10 rounded-full border border-white/10" style={{ backgroundColor: color.hex }} />
+                                                                    <div>
+                                                                        <div className="text-white/60 text-xs font-bold">{color.name}</div>
+                                                                        <div className="text-white/40 text-[10px] font-light leading-tight">{color.description}</div>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        )}
                                     </div>
                                 </div>
 

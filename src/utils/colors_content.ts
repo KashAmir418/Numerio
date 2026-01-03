@@ -101,7 +101,7 @@ export const COLOR_VIBRATIONS: Record<number, ColorVibration> = {
             { name: "Yellow", hex: "#FFFF00", description: "May weaken your resolve and executive presence." }
         ]
     },
-    10: {
+    9: {
         fortunate: [
             { name: "Red", hex: "#FF0000", description: "Ignites your passion for humanitarian causes." },
             { name: "Orange", hex: "#FFA500", description: "Grounds your expansive vision into reality." },
