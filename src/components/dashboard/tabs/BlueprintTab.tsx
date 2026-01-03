@@ -70,17 +70,17 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                             onClick={() => setShowShareModal(false)}
                             className="fixed inset-0 bg-black/90 backdrop-blur-md"
                         />
-                        <div className="min-h-full flex items-center justify-center p-4">
+                        <div className="min-h-screen flex flex-col items-center justify-center p-4 py-16 scroll-mt-20">
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                                className="relative z-10 flex flex-col items-center gap-6 my-auto pointer-events-auto scale-90 md:scale-100"
+                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                                className="relative z-10 flex flex-col items-center gap-6 pointer-events-auto w-full max-w-lg mx-auto"
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <button
                                     onClick={() => setShowShareModal(false)}
-                                    className="absolute -top-12 right-0 text-white/50 hover:text-white p-2"
+                                    className="absolute -top-12 sm:-top-16 right-0 sm:-right-8 text-white/50 hover:text-white p-3 bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm transition-all z-20"
                                 >
                                     <X size={24} />
                                 </button>
@@ -107,12 +107,14 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                                     </p>
                                 </div>
 
-                                <ShareableCard
-                                    profile={profile}
-                                    flags={{ red: redFlags, green: greenFlags }}
-                                    userName={userName}
-                                    zodiac={zodiac}
-                                />
+                                <div className="w-full flex justify-center scale-[0.85] sm:scale-100 origin-top">
+                                    <ShareableCard
+                                        profile={profile}
+                                        flags={{ red: redFlags, green: greenFlags }}
+                                        userName={userName}
+                                        zodiac={zodiac}
+                                    />
+                                </div>
                             </motion.div>
                         </div>
                     </div>
