@@ -108,45 +108,40 @@ export default function Home() {
     if (!isReady) return null;
 
     return (
-        <main className="relative min-h-screen w-full bg-void flex flex-col items-center overflow-x-hidden justify-start">
+        <main className="relative min-h-screen w-full bg-void flex flex-col items-center justify-start overflow-x-hidden">
             <StarBackground />
 
-            <AnimatePresence mode="wait">
+            {/* Always render dashboard if ready, but hide it behind loading */}
+            {step === "dashboard" && profile && (
+                <motion.div
+                    key="dashboard"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="relative z-10 w-full"
+                >
+                    <Dashboard profile={profile} onReset={handleReset} />
+                </motion.div>
+            )}
+
+            <AnimatePresence>
                 {step === "entry" && (
                     <motion.div
                         key="entry"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center gap-12 px-4 py-20"
+                        exit={{ opacity: 0 }}
+                        className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center gap-12 px-4"
                     >
                         <div className="text-center space-y-4">
-                            <motion.h1
-                                className="text-4xl md:text-6xl font-serif text-starlight tracking-tight"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3, duration: 1.5, ease: "easeOut" }}
-                            >
+                            <h1 className="text-4xl md:text-6xl font-serif text-starlight tracking-tight">
                                 When did your soul arrive?
-                            </motion.h1>
-                            <motion.p
-                                className="text-white/40 font-light tracking-wide uppercase text-xs md:text-sm"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.8, duration: 1.5 }}
-                            >
+                            </h1>
+                            <p className="text-white/40 font-light tracking-wide uppercase text-xs md:text-sm">
                                 Enter your date of birth
-                            </motion.p>
+                            </p>
                         </div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1.2, duration: 1 }}
-                        >
-                            <DateInput onSubmit={handleEntryComplete} />
-                        </motion.div>
+                        <DateInput onSubmit={handleEntryComplete} />
                     </motion.div>
                 )}
 
@@ -156,7 +151,7 @@ export default function Home() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center text-center p-4"
+                        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void p-4"
                     >
                         <motion.div
                             className="w-24 h-24 border border-gold/30 rounded-full mx-auto mb-8 relative"
@@ -164,27 +159,12 @@ export default function Home() {
                             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                         >
                             <div className="absolute inset-2 border border-gold/50 rounded-full opacity-50" />
-                            <div className="absolute inset-[10px] border border-gold/80 rounded-full opacity-30" />
-                            <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-gold rounded-full shadow-[0_0_20px_#D4AF37]" />
+                            <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-gold rounded-full" />
                         </motion.div>
 
-                        <div className="h-8">
-                            <motion.h2 className="text-xl font-serif text-gold tracking-widest uppercase italic animate-pulse">
-                                <LoadingText />
-                            </motion.h2>
-                        </div>
-                    </motion.div>
-                )}
-
-                {step === "dashboard" && profile && (
-                    <motion.div
-                        key="dashboard"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="relative z-10 w-full"
-                    >
-                        <Dashboard profile={profile} onReset={handleReset} />
+                        <motion.h2 className="text-xl font-serif text-gold tracking-widest uppercase italic animate-pulse">
+                            <LoadingText />
+                        </motion.h2>
                     </motion.div>
                 )}
             </AnimatePresence>

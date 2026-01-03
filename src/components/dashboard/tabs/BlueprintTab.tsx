@@ -62,52 +62,42 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
             {/* Share Modal */}
             <AnimatePresence>
                 {showShareModal && (
-                    <div className="fixed inset-0 z-50 overflow-y-auto">
+                    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4">
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setShowShareModal(false)}
-                            className="fixed inset-0 bg-black/90 backdrop-blur-md"
+                            className="fixed inset-0 bg-black/95 backdrop-blur-xl"
                         />
-                        <div className="min-h-screen flex flex-col items-center justify-center p-4 py-16 scroll-mt-20">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                                className="relative z-10 flex flex-col items-center gap-6 pointer-events-auto w-full max-w-lg mx-auto"
-                                onClick={(e) => e.stopPropagation()}
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="relative z-10 w-full max-w-sm flex flex-col items-center pointer-events-none"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                onClick={() => setShowShareModal(false)}
+                                className="mb-4 text-white/50 hover:text-white p-3 bg-white/5 rounded-full backdrop-blur-md pointer-events-auto"
                             >
-                                <button
-                                    onClick={() => setShowShareModal(false)}
-                                    className="absolute -top-12 sm:-top-16 right-0 sm:-right-8 text-white/50 hover:text-white p-3 bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm transition-all z-20"
-                                >
-                                    <X size={24} />
-                                </button>
+                                <X size={24} />
+                            </button>
 
-                                <div className="text-center">
-                                    <h3 className="text-2xl font-serif text-white">Your Soul Frequency</h3>
-                                    <p className="text-white/50 text-sm mt-1">
-                                        Save this card and share it to your Story.
-                                    </p>
-                                </div>
+                            <div className="w-full flex justify-center scale-[0.65] xs:scale-75 sm:scale-100 origin-center pointer-events-auto">
+                                <div className="flex flex-col items-center gap-6">
+                                    <div className="w-full max-w-xs text-center">
+                                        <input
+                                            type="text"
+                                            placeholder="Energy Signature"
+                                            value={userName}
+                                            onChange={(e) => setUserName(e.target.value)}
+                                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-center text-white placeholder-white/20 focus:outline-none focus:border-gold/50 transition-colors font-serif uppercase tracking-widest text-sm"
+                                            maxLength={15}
+                                        />
+                                    </div>
 
-                                {/* Name Input */}
-                                <div className="w-full max-w-xs">
-                                    <input
-                                        type="text"
-                                        placeholder="Enter your name (Optional)"
-                                        value={userName}
-                                        onChange={(e) => setUserName(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-center text-white placeholder-white/20 focus:outline-none focus:border-gold/50 transition-colors font-serif uppercase tracking-widest text-sm"
-                                        maxLength={15}
-                                    />
-                                    <p className="text-center text-[10px] text-white/30 mt-2 uppercase tracking-wider">
-                                        Sign your energy signature
-                                    </p>
-                                </div>
-
-                                <div className="w-full flex justify-center scale-[0.85] sm:scale-100 origin-top">
                                     <ShareableCard
                                         profile={profile}
                                         flags={{ red: redFlags, green: greenFlags }}
@@ -115,8 +105,8 @@ export const BlueprintTab = React.memo(({ profile, onOpenReading, isPremium, onS
                                         zodiac={zodiac}
                                     />
                                 </div>
-                            </motion.div>
-                        </div>
+                            </div>
+                        </motion.div>
                     </div>
                 )}
             </AnimatePresence>

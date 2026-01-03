@@ -3,6 +3,7 @@
 import React from 'react';
 import { ShareableCompatibilityCard } from '../social/ShareableCompatibilityCard'; // Import the new card
 import { X, Lock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { CompatibilityResult as ResultType } from '../../utils/compatibility_types';
 
 interface CompatibilityResultProps {
@@ -120,26 +121,31 @@ export const CompatibilityResult: React.FC<CompatibilityResultProps> = ({
 
             {/* Share Modal */}
             {showShareModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl animate-fade-in">
-                    <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl no-scrollbar">
+                <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowShareModal(false)}
+                        className="fixed inset-0 bg-black/95 backdrop-blur-xl animate-fade-in"
+                    />
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="relative z-10 w-full max-w-md flex flex-col items-center pointer-events-none"
+                    >
                         <button
                             onClick={() => setShowShareModal(false)}
-                            className="absolute top-4 right-4 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-white/20 transition-colors"
+                            className="mb-4 text-white/50 hover:text-white p-3 bg-white/5 rounded-full backdrop-blur-md pointer-events-auto"
                         >
                             <X size={20} />
                         </button>
 
-                        <div className="flex flex-col items-center">
-                            <div className="text-center mb-6">
-                                <h3 className="text-2xl font-serif text-white">Your Compatibility Report</h3>
-                                <p className="text-white/50 text-sm mt-1">
-                                    The truth about your connection.
-                                </p>
-                            </div>
-
+                        <div className="w-full flex justify-center scale-[0.6] xs:scale-75 sm:scale-100 origin-center pointer-events-auto no-scrollbar">
                             <ShareableCompatibilityCard result={result} names={names} />
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             )}
 
