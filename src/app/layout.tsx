@@ -6,16 +6,20 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel" });
 
 export const metadata: Metadata = {
-    title: "Numerio | Destiny Matrix & Soul Blueprint",
+    title: "Numerio.life | Destiny Matrix & Soul Blueprint",
     description: "Unlock the hidden geometry of your fate. Discover your Life Path, Destiny Matrix, and Soul Compatibility through the ancient science of numerology.",
     keywords: ["numerology", "destiny matrix", "life path number", "soul blueprint", "compatibility analysis", "self-discovery", "spiritual archetype"],
+    icons: {
+        icon: "/icon.png",
+        apple: "/apple-icon.png",
+    },
     openGraph: {
-        title: "Numerio | Your Cosmic Blueprint",
+        title: "Numerio.life | Your Cosmic Blueprint",
         description: "Explore the ancient science of your numbers. Get your free Destiny Matrix profile.",
         type: "website",
         images: [
             {
-                url: "/og-image.png", // We can add this file later if you have a logo
+                url: "/og-image.png",
                 width: 1200,
                 height: 630,
                 alt: "Numerio - Destiny Matrix",
@@ -24,7 +28,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Numerio | Destiny Matrix",
+        title: "Numerio.life | Destiny Matrix",
         description: "Unlock your Cosmic Blueprint.",
     },
 };
