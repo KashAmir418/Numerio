@@ -43,11 +43,14 @@ export function DateInput({ onSubmit }: { onSubmit: (date: string) => void }) {
         }
     };
 
+    const isComplete = inputValue.length === 10;
+
     return (
         <div className="flex flex-col items-center gap-8">
             <div className="relative group w-full max-w-[280px]">
                 <input
                     type="text"
+                    autoFocus
                     inputMode="numeric"
                     placeholder="DD.MM.YYYY"
                     value={inputValue}
@@ -59,12 +62,12 @@ export function DateInput({ onSubmit }: { onSubmit: (date: string) => void }) {
 
             <motion.button
                 onClick={handleSubmit}
-                className="group relative px-8 py-3 bg-white/5 border border-white/10 rounded-full overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-gold/50"
-                initial={{ opacity: 0, y: 10 }}
+                disabled={!isComplete}
+                className="group relative px-8 py-3 bg-white/5 border border-white/10 rounded-full overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-gold/50 disabled:opacity-0 disabled:translate-y-2 disabled:pointer-events-none"
+                initial={false}
                 animate={{
-                    opacity: inputValue.length === 10 ? 1 : 0,
-                    y: inputValue.length === 10 ? 0 : 10,
-                    pointerEvents: inputValue.length === 10 ? "auto" : "none"
+                    opacity: isComplete ? 1 : 0,
+                    y: isComplete ? 0 : 10,
                 }}
             >
                 <div className="relative z-10 flex items-center gap-2 text-starlight font-serif tracking-widest uppercase text-sm">

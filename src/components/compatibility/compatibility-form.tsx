@@ -13,10 +13,32 @@ export const CompatibilityForm: React.FC<CompatibilityFormProps> = ({ onCalculat
     const [nameA, setNameA] = useState('');
     const [nameB, setNameB] = useState('');
 
+    const formatInput = (value: string) => {
+        const digits = value.replace(/\D/g, '');
+        let formatted = '';
+        if (digits.length > 0) {
+            formatted += digits.substring(0, 2);
+            if (digits.length >= 3) formatted += '.' + digits.substring(2, 4);
+            if (digits.length >= 5) formatted += '.' + digits.substring(4, 8);
+        }
+        return formatted;
+    };
+
+    const convertToISO = (dateStr: string) => {
+        const parts = dateStr.split('.');
+        if (parts.length === 3 && parts[2].length === 4) {
+            return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+        }
+        return '';
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (dateA && dateB && nameA && nameB) {
-            onCalculate(dateA, dateB, nameA, nameB);
+        const isoA = convertToISO(dateA);
+        const isoB = convertToISO(dateB);
+
+        if (isoA && isoB && nameA && nameB) {
+            onCalculate(isoA, isoB, nameA, nameB);
         }
     };
 
@@ -42,13 +64,13 @@ export const CompatibilityForm: React.FC<CompatibilityFormProps> = ({ onCalculat
                     <div className="relative group">
                         <label className="block text-sm font-medium text-gray-300 mb-1 ml-1">Your Birth Date</label>
                         <input
-                            type="date"
+                            type="text"
+                            inputMode="numeric"
                             required
                             value={dateA}
-                            min="1900-01-01"
-                            max="2025-12-31"
-                            onChange={(e) => setDateA(e.target.value)}
-                            className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white [color-scheme:dark]"
+                            onChange={(e) => setDateA(formatInput(e.target.value.substring(0, 10)))}
+                            className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white placeholder-gray-600"
+                            placeholder="DD.MM.YYYY"
                         />
                     </div>
                 </div>
@@ -72,13 +94,13 @@ export const CompatibilityForm: React.FC<CompatibilityFormProps> = ({ onCalculat
                     <div className="relative group">
                         <label className="block text-sm font-medium text-gray-300 mb-1 ml-1">Their Birth Date</label>
                         <input
-                            type="date"
+                            type="text"
+                            inputMode="numeric"
                             required
                             value={dateB}
-                            min="1900-01-01"
-                            max="2025-12-31"
-                            onChange={(e) => setDateB(e.target.value)}
-                            className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white [color-scheme:dark]"
+                            onChange={(e) => setDateB(formatInput(e.target.value.substring(0, 10)))}
+                            className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white placeholder-gray-600"
+                            placeholder="DD.MM.YYYY"
                         />
                     </div>
                 </div>
