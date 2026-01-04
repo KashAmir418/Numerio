@@ -103,7 +103,7 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
                         <p className="text-white/50 text-[9px] mb-1 tracking-widest uppercase font-medium">
                             {userName ? `${userName}'S SOUL IS A` : "THIS SOUL IS A"}
                         </p>
-                        <h2 className="text-2xl md:text-3xl font-serif text-white uppercase tracking-widest leading-tight px-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                        <h2 className="text-lg font-serif text-white uppercase tracking-[0.2em] leading-tight px-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                             {archetype}
                         </h2>
                     </div>
