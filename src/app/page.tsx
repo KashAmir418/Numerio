@@ -101,6 +101,7 @@ export default function Home() {
 
     const handleReset = () => {
         localStorage.removeItem('numerio_user_birthdate');
+        localStorage.removeItem('numerio_active_tab');
         setProfile(null);
         setStep("entry");
     };

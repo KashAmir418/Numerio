@@ -19,6 +19,8 @@ interface DashboardProps {
 
 export type UserTier = 'FREE' | 'BASIC' | 'INFINITY';
 
+const TABS = ["Blueprint", "Compatibility", "Destiny Matrix", "Forecast"];
+
 export const Dashboard = ({ profile, onReset }: DashboardProps) => {
     const [userTier, setUserTier] = useState<UserTier>('FREE');
     const [compatibilityChecksUsed, setCompatibilityChecksUsed] = useState(0);
@@ -73,6 +75,7 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
         // 2. Load from localStorage
         const savedTier = localStorage.getItem('numerio_user_tier') as UserTier;
         const savedChecks = localStorage.getItem('numerio_compatibility_checks_used');
+        const savedTab = localStorage.getItem('numerio_active_tab');
 
         if (savedTier) {
             setUserTier(savedTier);
@@ -88,7 +91,16 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
         if (savedChecks) {
             setCompatibilityChecksUsed(parseInt(savedChecks, 10));
         }
+
+        if (savedTab && TABS.includes(savedTab)) {
+            setActiveTab(savedTab);
+        }
     }, []);
+
+    // Persist Tab Change
+    useEffect(() => {
+        localStorage.setItem('numerio_active_tab', activeTab);
+    }, [activeTab]);
 
     const handleUnlockInfinity = useCallback(() => {
         setUserTier('INFINITY');
@@ -148,7 +160,6 @@ export const Dashboard = ({ profile, onReset }: DashboardProps) => {
         currentReadingTitle = `The Path of the ${lpArchetype}`;
     }
 
-    const TABS = ["Blueprint", "Compatibility", "Destiny Matrix", "Forecast"];
 
     return (
         <div className="w-full relative z-10 pb-20">
