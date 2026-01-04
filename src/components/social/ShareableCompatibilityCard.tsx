@@ -71,10 +71,22 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                 style={{ fontFamily: 'var(--font-inter)' }}
             >
                 {/* 1. Background Effects (The Void) */}
-                <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-purple-900/30 to-transparent pointer-events-none" />
-                <div className="absolute inset-x-0 h-64 bg-gradient-to-t from-red-900/20 to-transparent pointer-events-none" />
-                <div className="absolute top-[20%] left-[-20%] w-[300px] h-[300px] bg-purple-600/10 blur-[100px] rounded-full" />
-                <div className="absolute bottom-[20%] right-[-20%] w-[300px] h-[300px] bg-red-600/10 blur-[100px] rounded-full" />
+                <div
+                    className="absolute top-0 inset-x-0 h-[400px]"
+                    style={{ background: 'radial-gradient(circle at 50% 0%, rgba(88, 28, 135, 0.25) 0%, rgba(88, 28, 135, 0) 70%)' }}
+                />
+                <div
+                    className="absolute bottom-0 inset-x-0 h-[300px]"
+                    style={{ background: 'radial-gradient(circle at 50% 100%, rgba(153, 27, 27, 0.15) 0%, rgba(153, 27, 27, 0) 70%)' }}
+                />
+                <div
+                    className="absolute top-[20%] left-[-20%] w-[400px] h-[400px]"
+                    style={{ background: 'radial-gradient(circle at center, rgba(147, 51, 234, 0.08) 0%, rgba(147, 51, 234, 0) 70%)' }}
+                />
+                <div
+                    className="absolute bottom-[20%] right-[-20%] w-[400px] h-[400px]"
+                    style={{ background: 'radial-gradient(circle at center, rgba(220, 38, 38, 0.08) 0%, rgba(220, 38, 38, 0) 70%)' }}
+                />
                 {/* Content Sections */}
                 <div className="relative z-10 w-full text-center mt-6 mb-8">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4">

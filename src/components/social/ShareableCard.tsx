@@ -77,8 +77,19 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
                 style={{ fontFamily: 'var(--font-inter)' }} // Ensure font loads
             >
                 {/* Background Aesthetics */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-[100px] -mr-40 -mt-40" />
-                <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold/10 rounded-full blur-[100px] -ml-40 -mb-40" />
+                <div
+                    className="absolute top-0 right-0 w-[500px] h-[500px] -mr-64 -mt-64"
+                    style={{ background: 'radial-gradient(circle at center, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0) 70%)' }}
+                />
+                <div
+                    className="absolute bottom-0 left-0 w-[450px] h-[450px] -ml-56 -mb-56"
+                    style={{ background: 'radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0) 70%)' }}
+                />
+                {/* Center Glow */}
+                <div
+                    className="absolute top-1/2 left-1/2 w-[400px] h-[400px] -translate-x-1/2 -translate-y-1/2"
+                    style={{ background: 'radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 60%)' }}
+                />
 
                 {/* Header */}
                 <div className="flex justify-between items-center mb-2 relative z-10">
@@ -150,13 +161,19 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
                             <div className="flex justify-center gap-2">
                                 {COLOR_VIBRATIONS[profile.lifePathNumber]?.fortunate.slice(0, 3).map((color, i) => (
                                     <div key={i} className="flex flex-col items-center gap-1">
-                                        <div
-                                            className="w-8 h-8 rounded-full border border-white/20 shadow-lg"
-                                            style={{
-                                                background: `linear-gradient(135deg, ${color.hex}, ${color.hex}88)`,
-                                                boxShadow: `0 0 10px ${color.hex}33`
-                                            }}
-                                        />
+                                        <div className="relative">
+                                            {/* Dedicated Glow for html2canvas reliability */}
+                                            <div
+                                                className="absolute inset-0 rounded-full"
+                                                style={{ background: `${color.hex}33`, filter: 'blur(4px)' }}
+                                            />
+                                            <div
+                                                className="relative w-8 h-8 rounded-full border border-white/20"
+                                                style={{
+                                                    background: `linear-gradient(135deg, ${color.hex}, ${color.hex}cc)`,
+                                                }}
+                                            />
+                                        </div>
                                         <span className="text-[6px] uppercase tracking-tighter text-white/40 font-medium">
                                             {color.name.replace('Light ', '')}
                                         </span>
@@ -171,12 +188,14 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
                             <div className="flex justify-center gap-2">
                                 {COLOR_VIBRATIONS[profile.lifePathNumber]?.discordant.slice(0, 3).map((color, i) => (
                                     <div key={i} className="flex flex-col items-center gap-1">
-                                        <div
-                                            className="w-8 h-8 rounded-full border border-white/20 shadow-lg grayscale"
-                                            style={{
-                                                background: `linear-gradient(135deg, ${color.hex}, ${color.hex}88)`,
-                                            }}
-                                        />
+                                        <div className="relative">
+                                            <div
+                                                className="w-8 h-8 rounded-full border border-white/20 grayscale opacity-80"
+                                                style={{
+                                                    background: `linear-gradient(135deg, ${color.hex}, ${color.hex}cc)`,
+                                                }}
+                                            />
+                                        </div>
                                         <span className="text-[6px] uppercase tracking-tighter text-white/40 font-medium line-through">
                                             {color.name.replace('Light ', '')}
                                         </span>
