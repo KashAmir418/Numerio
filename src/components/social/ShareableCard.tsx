@@ -79,8 +79,6 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
                 {/* Background Aesthetics */}
                 <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-[100px] -mr-40 -mt-40" />
                 <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold/10 rounded-full blur-[100px] -ml-40 -mb-40" />
-                {/* Noise - Ensure this path is correct or remove if problematic */}
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
 
                 {/* Header */}
                 <div className="flex justify-between items-center mb-2 relative z-10">

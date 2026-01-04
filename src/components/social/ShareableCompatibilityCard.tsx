@@ -27,7 +27,7 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                 backgroundColor: "#000000", // Default to black to match void
                 useCORS: true,
                 logging: false,
-                allowTaint: true,
+                allowTaint: false,
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any);
 
@@ -67,19 +67,15 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
             {/* The Actual Card (DOM Element to Capture) */}
             <div
                 ref={cardRef}
-                className="relative w-[400px] h-[711px] overflow-hidden bg-[#050505] flex flex-col p-8 items-center bg-[url('/noise.png')] bg-repeat"
+                className="relative w-[400px] h-[711px] overflow-hidden bg-[#050505] flex flex-col p-8 items-center"
                 style={{ fontFamily: 'var(--font-inter)' }}
             >
                 {/* 1. Background Effects (The Void) */}
                 <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-purple-900/30 to-transparent pointer-events-none" />
-                <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-red-900/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 h-64 bg-gradient-to-t from-red-900/20 to-transparent pointer-events-none" />
                 <div className="absolute top-[20%] left-[-20%] w-[300px] h-[300px] bg-purple-600/10 blur-[100px] rounded-full" />
                 <div className="absolute bottom-[20%] right-[-20%] w-[300px] h-[300px] bg-red-600/10 blur-[100px] rounded-full" />
-
-                {/* Border Frame */}
-                <div className="absolute inset-4 border border-white/10 rounded-[32px] pointer-events-none z-20" />
-
-                {/* 2. Header: The Title */}
+                {/* Content Sections */}
                 <div className="relative z-10 w-full text-center mt-6 mb-8">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4">
                         <Sparkles size={10} className="text-gold" />
@@ -95,9 +91,7 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
 
                 {/* 3. The Central Score (The Heart) */}
                 <div className="relative z-10 mb-8 flex flex-col items-center">
-                    {/* Glowing Ring */}
                     <div className="relative w-40 h-40 flex items-center justify-center">
-                        {/* Glowing Ring */}
                         <div className="absolute inset-0 rounded-full border-4 border-white/5" />
                         <svg className="absolute inset-0 w-full h-full transform -rotate-90 drop-shadow-[0_0_15px_rgba(192,132,252,0.4)]">
                             <circle
@@ -130,7 +124,6 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
 
                 {/* 4. The Viral Metrics (Glass Cards) */}
                 <div className="w-full relative z-10 space-y-3 mb-8 px-2">
-                    {/* Lust */}
                     <div className="relative h-10 bg-white/5 border border-white/10 rounded-lg flex items-center px-4 overflow-hidden">
                         <div className="absolute inset-0 bg-red-500/10" style={{ width: `${result.viralBreakdown?.lust}%` }} />
                         <div className="relative w-full flex justify-between items-center">
@@ -139,7 +132,6 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                         </div>
                     </div>
 
-                    {/* Logic */}
                     <div className="relative h-10 bg-white/5 border border-white/10 rounded-lg flex items-center px-4 overflow-hidden">
                         <div className="absolute inset-0 bg-blue-500/10" style={{ width: `${result.viralBreakdown?.logic}%` }} />
                         <div className="relative w-full flex justify-between items-center">
@@ -148,7 +140,6 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                         </div>
                     </div>
 
-                    {/* Toxic */}
                     <div className="relative h-10 bg-white/5 border border-white/10 rounded-lg flex items-center px-4 overflow-hidden">
                         <div className="absolute inset-0 bg-green-500/10" style={{ width: `${result.viralBreakdown?.toxic}%` }} />
                         <div className="relative w-full flex justify-between items-center">
@@ -160,7 +151,6 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
 
                 {/* 5. The Truth & Conflict */}
                 <div className="w-full relative z-10 mb-auto px-2 space-y-3">
-                    {/* Conflict Badge */}
                     {result.conflict_matrix && (
                         <div className="flex justify-between items-center bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">
                             <span className="text-[9px] uppercase tracking-widest text-red-300 font-bold">Conflict Protocol</span>
@@ -193,7 +183,6 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                         <div className="h-[1px] w-8 bg-white/20" />
                     </div>
                 </div>
-
             </div>
 
             {/* Controls */}
@@ -217,6 +206,6 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                     Perfect for Instagram Stories & TikTok
                 </p>
             </div>
-        </div >
+        </div>
     );
 };
