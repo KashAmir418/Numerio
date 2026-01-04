@@ -91,7 +91,7 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
                 <div className="relative z-10 w-full text-center mt-6 mb-8">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4">
                         <Sparkles size={10} className="text-gold" />
-                        <span className="text-[9px] uppercase tracking-[0.3em] text-gold font-bold">Cosmic Audit</span>
+                        <span className="text-[9px] uppercase tracking-[0.3em] text-gold font-bold">Numerio.life</span>
                     </div>
                     <h2 className="text-3xl font-serif text-white tracking-tight leading-none mb-1">
                         {nameA} <span className="text-white/30 text-2xl font-sans">&</span> {nameB}
@@ -191,7 +191,7 @@ export const ShareableCompatibilityCard = ({ result, names }: ShareableCompatibi
 
                     <div className="flex items-center justify-center gap-2 opacity-50">
                         <div className="h-[1px] w-8 bg-white/20" />
-                        <span className="text-[10px] font-bold tracking-[0.4em] text-white">NUMERIO</span>
+                        <span className="text-[10px] font-bold tracking-[0.4em] text-white">NUMERIO.LIFE</span>
                         <div className="h-[1px] w-8 bg-white/20" />
                     </div>
                 </div>

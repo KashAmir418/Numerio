@@ -91,21 +91,21 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
                     style={{ background: 'radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 60%)' }}
                 />
 
-                {/* Header */}
                 <div className="flex justify-between items-center mb-2 relative z-10">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Numerio</span>
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-gold">Soul Frequency</span>
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">Numerio.life</span>
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">Soul Frequency</span>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 flex flex-col items-center justify-start pt-2 relative z-10 text-center gap-4">
 
-                    {/* User Name / Identity */}
                     <div className="animate-fade-in-up">
-                        <p className="text-white/50 text-[9px] mb-1 tracking-widest uppercase">
+                        <p className="text-white/50 text-[9px] mb-1 tracking-widest uppercase font-medium">
                             {userName ? `${userName}'S SOUL IS A` : "THIS SOUL IS A"}
                         </p>
-                        <h2 className="text-xl font-serif text-white uppercase tracking-widest leading-tight px-4">{archetype}</h2>
+                        <h2 className="text-2xl md:text-3xl font-serif text-white uppercase tracking-widest leading-tight px-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                            {archetype}
+                        </h2>
                     </div>
 
                     {/* Chart Visual - Increased size as requested */}
@@ -208,7 +208,7 @@ export const ShareableCard = ({ profile, flags, userName, zodiac }: ShareableCar
 
                 {/* Footer */}
                 <div className="text-center mt-4 relative z-10">
-                    <p className="text-[9px] text-white/20 uppercase tracking-[0.5em]">numerio.app</p>
+                    <p className="text-[9px] text-white/20 uppercase tracking-[0.5em] font-bold">numerio.life</p>
                 </div>
             </div>
 
