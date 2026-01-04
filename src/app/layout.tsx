@@ -10,7 +10,10 @@ export const metadata: Metadata = {
     description: "Unlock the hidden geometry of your fate. Discover your Life Path, Destiny Matrix, and Soul Compatibility through the ancient science of numerology.",
     keywords: ["numerology", "destiny matrix", "life path number", "soul blueprint", "compatibility analysis", "self-discovery", "spiritual archetype"],
     icons: {
-        icon: "/icon.png",
+        icon: [
+            { url: "/favicon.svg", type: "image/svg+xml" },
+            { url: "/icon.png", type: "image/png" },
+        ],
         apple: "/apple-icon.png",
     },
     openGraph: {

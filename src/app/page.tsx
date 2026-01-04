@@ -151,7 +151,7 @@ export default function Home() {
                         key="loading"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        exit={{ opacity: 0, pointerEvents: "none" }}
                         className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void p-4"
                     >
                         <motion.div

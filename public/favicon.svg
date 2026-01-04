@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FDB931;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Sacred Geometry Lines -->
+  <path d="M256 40 L443.1 148 L443.1 364 L256 472 L68.9 364 L68.9 148 Z" fill="none" stroke="url(#gold-grad)" stroke-width="2" opacity="0.3" />
+  
+  <!-- The Merkabah / Star Tetrahydron -->
+  <!-- Triangle Up -->
+  <path d="M256 80 L420 360 L92 360 Z" fill="none" stroke="url(#gold-grad)" stroke-width="12" stroke-linejoin="round" filter="url(#glow)" />
+  <!-- Triangle Down -->
+  <path d="M256 432 L420 152 L92 152 Z" fill="none" stroke="url(#gold-grad)" stroke-width="12" stroke-linejoin="round" filter="url(#glow)" />
+  
+  <!-- Central Eye / Core Symbol -->
+  <circle cx="256" cy="256" r="40" fill="none" stroke="url(#gold-grad)" stroke-width="4" />
+  <circle cx="256" cy="256" r="15" fill="url(#gold-grad)" />
+  
+  <!-- Connecting Lines for Complexity -->
+  <line x1="256" y1="80" x2="256" y2="432" stroke="url(#gold-grad)" stroke-width="2" opacity="0.5" />
+  <line x1="92" y1="152" x2="420" y2="360" stroke="url(#gold-grad)" stroke-width="2" opacity="0.5" />
+  <line x1="420" y1="152" x2="92" y2="360" stroke="url(#gold-grad)" stroke-width="2" opacity="0.5" />
+</svg>
